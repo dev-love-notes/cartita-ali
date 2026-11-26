@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz cumpleaños, Ali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #fff6f9 0%, #ffffff 65%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      color: #233;
+      transition: background-color 0.35s ease;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 500;
+      text-align: center;
+      color: #2b2b2b;
+    }
+
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 600px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .clickable-art {
+      width: 215px;
+      height: auto;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      user-select: none;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(214, 120, 150, 0.14);
+      animation: gentleFloat 3.2s ease-in-out infinite;
+    }
+
+    .clickable-art:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 26px rgba(214, 120, 150, 0.24);
+    }
+
+    .letter-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+    }
+
+    .washi-tape {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 118px;
+      height: 24px;
+      background: rgba(255, 182, 203, 0.75);
+      border-left: 2px dashed rgba(255, 255, 255, 0.8);
+      border-right: 2px dashed rgba(255, 255, 255, 0.8);
+      border-radius: 3px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .letter-card {
+      position: relative;
+      background-color: repeating-linear-gradient(
+        white,
+        white 28px,
+        #f2e6ea 29px
+      );
+      border-radius: 10px;
+      padding: 40px 32px 34px;
+      border: 2px solid #f0dde4;
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 12px 30px rgba(180, 110, 135, 0.12);
+      line-height: 29px;
+      font-size: 0.98rem;
+      color: #333;
+    }
+
+    .letter-badge {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: #b83b65;
+      background: #fff0f5;
+      border: 1px solid #f5cedb;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .letter-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 14px 0;
+      color: #222;
+    }
+
+    .letter-card p {
+      margin: 0 0 14px 0;
+    }
+
+    .gift-box {
+      background-color: rgba(255, 244, 248, 0.95);
+      border: 1.5px dashed #e2a9bc;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      line-height: 28px;
+      font-size: 0.94rem;
+    }
+
+    .cred-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .gift-box code {
+      background: #fff;
+      padding: 2px 8px;
+      border-radius: 5px;
+      border: 1px solid #ead5dc;
+      font-family: monospace;
+      color: #b83b65;
+      font-size: 0.92rem;
+    }
+
+    .copy-btn {
+      border: 1px solid #e7b8c8;
+      background: #fff;
+      color: #b83b65;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: #ffe6ef;
+    }
+
+    .letter-sign {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
+      margin-top: 18px !important;
+      color: #333;
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 22px;
+    }
+
+    .btn-secondary {
+      padding: 8px 18px;
+      border: 1px solid #e6d3da;
+      background: #ffffff;
+      border-radius: 999px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-secondary:hover {
+      background: #fff5f8;
+      color: #b83b65;
+      border-color: #e2a9bc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio de fondo (asegúrate de tener musica.mp3 en la misma carpeta) -->
+  <audio id="bg-music" src="musica.mp3" loop preload="auto"></audio>
+
+  <!-- Pantalla 1: Hámster que abre la carta e inicia la música -->
+  <section id="screen-1" class="screen active">
+    <h2>Toc toc ali, te llegó un correo :3</h2>
+    <img
+      src="hamster.jpg"
+      alt="Hámster con carta"
+      class="clickable-art"
+      onclick="openLetterWithMusic()"
+    />
+  </section>
+
+  <!-- Pantalla 2: Sobre cerrado -->
+  <section id="screen-2" class="screen">
+    <h2>Una cartita para ti</h2>
+    <svg class="clickable-art" onclick="goToScreen(3)" viewBox="0 0 220 180" aria-label="Sobre cerrado">
+      <rect x="30" y="35" width="160" height="110" rx="8" fill="#fff" stroke="#1f1f1f" stroke-width="4" />
+      <path d="M32 38 L110 98 L188 38" fill="none" stroke="#1f1f1f" stroke-width="4" stroke-linejoin="round" />
+      <path d="M32 142 L88 92" fill="none" stroke="#1f1f1f" stroke-width="3.5" />
+      <path d="M188 142 L132 92" fill="none" stroke="#1f1f1f" stroke-width="3.5" />
+      <path d="M110 112 C110 112 93 100 93 88 C93 82 98 78 103 78 C107 78 109 81 110 83 C111 81 113 78 117 78 C122 78 127 82 127 88 C127 100 110 112 110 112 Z" fill="#ff9ebb" stroke="#1f1f1f" stroke-width="3" />
+    </svg>
+  </section>
+
+  <!-- Pantalla 3: ¡Ábrelo! -->
+  <section id="screen-3" class="screen">
+    <h2>¡Ábrelo!</h2>
+    <svg class="clickable-art" onclick="openLetterWithMusic()" viewBox="0 0 220 190" aria-label="Sobre abierto con carta">
+      <rect x="52" y="22" width="116" height="90" rx="4" fill="#fffdf7" stroke="#1f1f1f" stroke-width="3.5" />
+      <line x1="68" y1="42" x2="148" y2="42" stroke="#ccc" stroke-width="3" stroke-linecap="round" />
+      <line x1="68" y1="56" x2="140" y2="56" stroke="#ccc" stroke-width="3" stroke-linecap="round" />
+      <line x1="68" y1="70" x2="125" y2="70" stroke="#ccc" stroke-width="3" stroke-linecap="round" />
+      <path d="M30 65 L110 115 L190 65 L190 155 Q190 163 182 163 L38 163 Q30 163 30 155 Z" fill="#fff" stroke="#1f1f1f" stroke-width="4" stroke-linejoin="round" />
+      <path d="M110 144 C110 144 95 133 95 123 C95 118 99 115 103 115 C107 115 109 117 110 119 C111 117 113 115 117 115 C121 115 125 118 125 123 C125 133 110 144 110 144 Z" fill="#ff9ebb" stroke="#1f1f1f" stroke-width="3" />
+    </svg>
+  </section>
+
+  <!-- Pantalla 4: La carta -->
+  <section id="screen-4" class="screen">
+    <div class="letter-wrapper">
+      <div class="washi-tape"></div>
+      <article class="letter-card">
+        <span class="letter-badge">✦ Edición especial para la chica que alegra mis dias ✦</span>
+        <h1 class="letter-title">¡Feliz cumpleaños, Ali!</h1>
+        <p>
+          Hoy es un día muy especial porque celebramos tu vida y todo lo bonito que eres. Desde que llegaste a mis días, iluminaste cosas que ni siquiera sabía que necesitaban luz.
+        </p>
+        <p>
+          Me encanta tu forma de ser, tu sonrisa, cómo logras sacarme una sonrisa incluso en los días más pesados y ese cariño tan genuino que despiertas en mí. Mereces todo lo bueno, lo lindo y lo tranquilo en este nuevo año que empieza para ti.
+        </p>
+        <p>
+          Me acordé que hace tiempo tenías ganas de jugar <strong>Little Nightmares</strong>, así que quise regalártelo en una cuenta hecha especialmente para ti para que lo disfrutes a tu ritmo:
+        </p>
+        <div class="gift-box">
+          <strong>Tu cuenta:</strong>
+          <div class="cred-row">
+            <span>Correo: <code id="gift-user">zx1r6</code></span>
+            <button type="button" class="copy-btn" onclick="copyText('gift-user', this)">Copiar</button>
+          </div>
+          <div class="cred-row">
+            <span>Contraseña: <code id="gift-pass">wilson2026%</code></span>
+            <button type="button" class="copy-btn" onclick="copyText('gift-pass', this)">Copiar</button>
+          </div>
+        </div>
+        <p>Que disfrutes muchísimo tu día y tu jueguito. Aquí estoy para ti siempre feliz 19 años.</p>
+        <p class="letter-sign">Con mucho cariño, Emilio ♡</p>
+      </article>
+    </div>
+
+    <div class="actions-row">
+      <button id="music-btn" class="btn-secondary" onclick="toggleMusic()">Pausar música</button>
+      <button class="btn-secondary" onclick="goToScreen(1)">Volver al inicio</button>
+    </div>
+  </section>
+
+  <script>
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    music.volume = 0.45;
+
+    function playMusic() {
+      music.play().then(() => {
+        if (musicBtn) musicBtn.textContent = 'Pausar música';
+      }).catch(() => {
+        // Si el navegador bloquea el autoplay por algún motivo, se podrá activar con el botón
+      });
+    }
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        if (musicBtn) musicBtn.textContent = 'Pausar música';
+      } else {
+        music.pause();
+        if (musicBtn) musicBtn.textContent = 'Reproducir música';
+      }
+    }
+
+    function goToScreen(screenNumber) {
+      const screens = document.querySelectorAll('.screen');
+      screens.forEach((screen) => screen.classList.remove('active'));
+
+      const target = document.getElementById(`screen-${screenNumber}`);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function openLetterWithMusic() {
+      playMusic();
+      goToScreen(4);
+    }
+
+    function copyText(elementId, btnElement) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.textContent;
+      navigator.clipboard?.writeText(text).then(() => {
+        const prev = btnElement.textContent;
+        btnElement.textContent = '¡Copiado!';
+        setTimeout(() => {
+          btnElement.textContent = prev;
+        }, 1400);
+      });
+    }
+  </script>
+</body>
+</html>
